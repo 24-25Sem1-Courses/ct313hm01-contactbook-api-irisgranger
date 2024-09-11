@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
+const contactsRouter = require('./routes/contacts.router');
 const app = express();
 
 app.use(cors());
@@ -12,5 +13,7 @@ app.get('/', (req, res) => {
         message: 'ok!'
     });
 });
+
+contactsRouter.setup(app);
 
 module.exports = app;
