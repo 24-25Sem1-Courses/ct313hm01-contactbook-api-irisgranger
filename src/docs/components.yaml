@@ -51,3 +51,11 @@ components:
                 nullable: true
                 default: null
                 description: The response data
+  parameters:
+    contactIdParam:
+      name: id
+      description: Contact ID
+      required: true
+      in: path
+      schema:
+        type: integer
