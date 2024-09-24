@@ -1,7 +1,7 @@
 const express = require('express');
 const contactsController = require('../controllers/contacts.controllers');
 const {methodNotAllowed} = require('../controllers/errors.controller');
-//const swaggerJSDoc = require('swagger-jsdoc');
+const avatarUpload = require('../middlewares/avatar-upload.middleware');
 
 const router = express.Router();
 
@@ -82,6 +82,7 @@ module.exports.setup = (app) => {
      *                       $ref: '#/components/schemas/Contact'
      */
     router.post('/', contactsController.createContact);
+    //router.post('/', avatarUpload, contactsController.createContact);
 
 
     /**
