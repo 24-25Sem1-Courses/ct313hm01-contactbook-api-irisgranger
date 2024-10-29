@@ -1,6 +1,6 @@
 class Paginator {
     constructor(page = 1, limit = 5) {
-        this.limit = parseInt(limit, 10);
+    this.limit = parseInt(limit, 10);
         if (isNaN(this.limit) || this.limit < 1) {
             this.limit = 5;
         }
@@ -16,6 +16,7 @@ class Paginator {
         if (totalRecords === 0) {
             return {};
         }
+
         let totalPages = Math.ceil(totalRecords / this.limit);
         return {
             totalRecords,

@@ -25,6 +25,8 @@ module.exports.setup = (app) => {
      *         schema:
      *           type: string
      *         description: Filter by contact name
+     *       - $ref: '#/components/parameters/limitParam'
+     *       - $ref: '#/components/parameters/pageParam'
      *     tags:
      *       - contacts
      *     responses:
@@ -55,14 +57,14 @@ module.exports.setup = (app) => {
      *   post:
      *     summary: Create a new contact
      *     description: Create a new contact
-     *     tags:
-     *       - contacts
      *     requestBody:
      *       required: true
      *       content:
-     *         application/json:
+     *         multipart/form-data:
      *           schema:
      *             $ref: '#/components/schemas/Contact'
+     *     tags:
+     *       - contacts
      *     responses:
      *       201:
      *         description: A new contact
@@ -81,8 +83,8 @@ module.exports.setup = (app) => {
      *                     contact:
      *                       $ref: '#/components/schemas/Contact'
      */
-    router.post('/', contactsController.createContact);
-    //router.post('/', avatarUpload, contactsController.createContact);
+    //router.post('/', contactsController.createContact);
+    router.post('/', avatarUpload, contactsController.createContact);
 
 
     /**
@@ -165,8 +167,8 @@ module.exports.setup = (app) => {
      *                     contact:
      *                       $ref: '#/components/schemas/Contact'
      */
-    router.put('/:id', contactsController.updateContact);
-
+    //router.put('/:id', contactsController.updateContact);
+    router.put('/:id', avatarUpload, contactsController.updateContact);
     /**
      * @swagger
      * /api/v1/contacts/{id}:
