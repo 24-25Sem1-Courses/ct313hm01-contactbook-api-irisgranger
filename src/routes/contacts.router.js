@@ -186,4 +186,41 @@ module.exports.setup = (app) => {
      */
     router.delete('/:id', contactsController.deleteContact);
     router.all('/:id', methodNotAllowed);
+
+    module.exports.setup = (app) => {
+    app.use('/api/v1/contacts', router);
+
+    /**
+     * @swagger
+     * /api/v1/contacts/all:
+     *   get:
+     *     summary: Get all contacts
+     *     description: Get a list of all contacts without any filters or pagination
+     *     tags:
+     *       - contacts
+     *     responses:
+     *       200:
+     *         description: A list of all contacts
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 status:
+     *                   type: string
+     *                   description: The response status
+     *                   enum: [success]
+     *                 data:
+     *                   type: object
+     *                   properties:
+     *                     contacts:
+     *                       type: array
+     *                       items:
+     *                         $ref: '#/components/schemas/Contact'
+     */
+    router.get('/all', contactsController.getAllContacts);
+
+    // Các routes khác...
+};
+
 };

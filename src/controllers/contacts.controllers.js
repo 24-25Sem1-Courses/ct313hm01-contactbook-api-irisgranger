@@ -134,6 +134,23 @@ async function deleteAllContacts(req, res, next) {
     }
 }
 
+// Thêm hàm getAllContacts để tải tất cả liên hệ
+async function getAllContacts(req, res, next) {
+    try {
+        const contacts = await contactsService.getAllContacts();
+        
+        return res.json(
+            JSend.success({
+                contacts,
+            })
+        );
+    } catch (error) {
+        console.log(error);
+        return next(new ApiError(500, 'An error occurred while retrieving all contacts'));
+    }
+}
+
+
 module.exports = {
     getContactsByFilter,
     deleteAllContacts,
@@ -141,6 +158,7 @@ module.exports = {
     createContact,
     updateContact,
     deleteContact,
+    getAllContacts
 };
 
 

@@ -146,6 +146,17 @@ async function deleteAllContacts() {
     });
 }
 
+// Thêm hàm getAllContacts để lấy tất cả các liên hệ
+async function getAllContacts() {
+    try {
+        // Truy vấn để lấy tất cả các liên hệ mà không có bộ lọc hoặc giới hạn
+        return await contactRepository().select('*');
+    } catch (error) {
+        console.error('Error retrieving all contacts:', error);
+        throw new Error('Could not retrieve all contacts');
+    }
+}
+
 module.exports = {
     // Export defined functions
     createContact,
@@ -153,5 +164,6 @@ module.exports = {
     getContactById,
     updateContact,
     deleteContact,
-    deleteAllContacts
+    deleteAllContacts,
+    getAllContacts
 }
